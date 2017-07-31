@@ -1,0 +1,3 @@
+---
+# vars file for sambaum.certbot-cloudflare
+python_install: [certbot-dns-cloudflare]
