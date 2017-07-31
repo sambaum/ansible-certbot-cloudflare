@@ -1,13 +1,19 @@
 ---
 # tasks file for sambaum.certbot-cloudflare
+- name: Create directory "{{ dns_cloudflare_ini_location }}"
+  file:
+    path: "{{ dns_cloudflare_ini_location }}"
+    state: directory
+    mode: 0755
+
 - name: Configure cloudflare.ini
   template:
-     dest: "{{ dns_cloudflare_ini_location }}"
+     dest: "{{ dns_cloudflare_ini_location }}cloudflare.ini"
      src: cloudflare.ini
 
 - name: Configure cloudflare.ini permissions
   file:
-     path: "{{ dns_cloudflare_ini_location }}"
+     path: "{{ dns_cloudflare_ini_location }}cloudflare.ini"
      owner: "{{ dns_cloudflare_ini_permissions_owner }}"
      group: "{{ dns_cloudflare_ini_permissions_group }}"
      mode: "{{ dns_cloudflare_ini_permissions_mode }}"
