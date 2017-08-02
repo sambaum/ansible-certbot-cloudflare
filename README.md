@@ -1,7 +1,7 @@
 Role Name
 =========
 
-This role installs and configures the Cloudflare plugin for certbot
+This role installs and configures the Cloudflare plugin for certbot (/etc/letsencrypt/cloudflare.ini)
 
 Requirements
 ------------
