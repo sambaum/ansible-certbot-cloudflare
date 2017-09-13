@@ -1,5 +1,10 @@
 ---
 # tasks file for sambaum.certbot-cloudflare
+
+# Note:
+# The python package "certbot-dns-cloudflare" will be
+# installed via the variable "python_install" defined in vars
+
 - name: Create directory "{{ dns_cloudflare_ini_location }}"
   file:
     path: "{{ dns_cloudflare_ini_location }}"
@@ -17,3 +22,24 @@
      owner: "{{ dns_cloudflare_ini_permissions_owner }}"
      group: "{{ dns_cloudflare_ini_permissions_group }}"
      mode: "{{ dns_cloudflare_ini_permissions_mode }}"
+
+- name: Adding cron job for certbot renew
+  cron:
+    name: "Certbot renew"
+    minute: "30"
+    hour: "3"
+    job: "certbot renew --quiet --no-self-upgrade"
+
+# temp
+- name: Adding cron job to restart apache
+  cron:
+    name: "Restart Apache"
+    minute: "40"
+    hour: "3"
+    job: "service apache2 restart"
+
+# temp
+- name: Removing cron job for letsencrypt renew
+  cron:
+    name: "Certbot automatic renewal."
+    state: absent
