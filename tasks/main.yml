@@ -28,7 +28,7 @@
     name: "Certbot renew"
     minute: "30"
     hour: "3"
-    job: "certbot renew --quiet --no-self-upgrade"
+    job: "{{ certbot_binary_location }} renew --quiet --no-self-upgrade"
 
 # temp
 - name: Adding cron job to restart apache
