@@ -30,16 +30,9 @@
     hour: "3"
     job: "{{ certbot_binary_location }} renew --quiet --no-self-upgrade"
 
-# temp
 - name: Adding cron job to restart apache
   cron:
     name: "Restart Apache"
     minute: "40"
     hour: "3"
     job: "service apache2 restart"
-
-# temp
-- name: Removing cron job for letsencrypt renew
-  cron:
-    name: "Certbot automatic renewal."
-    state: absent
